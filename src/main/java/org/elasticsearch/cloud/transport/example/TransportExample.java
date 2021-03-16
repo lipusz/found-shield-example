@@ -48,8 +48,8 @@ public class TransportExample {
     }
 
     public void run(String[] args) {
-        String host = System.getProperty("host");
-        int port = Integer.parseInt(System.getProperty("port", "9343"));
+    	String host = System.getProperty("host", "localhost");
+        int port = Integer.parseInt(System.getProperty("port", "9300"));
 
         String hostBasedClusterName = host.split("\\.", 2)[0];
         String clusterName = System.getProperty("cluster", hostBasedClusterName);
@@ -73,8 +73,27 @@ public class TransportExample {
             .put("cluster.name", clusterName)
             .put("xpack.security.transport.ssl.enabled", enableSsl)
             .put("request.headers.X-Found-Cluster", "${cluster.name}")
-            .put("xpack.security.user", System.getProperty("xpack.security.user"))
-            .put("xpack.security.transport.ssl.verification_mode", insecure ? "none" : "full")
+            .put(
+            	"xpack.security.user",
+            	System.getProperty("xpack.security.user", "elastic:liferay"))
+            .put(
+            	"xpack.security.transport.ssl.verification_mode",
+            	insecure ? "none" : "full")
+//			Certs whe testing with localhost ES cluster
+    		.put(
+    			"xpack.ssl.keystore.password",
+    			"liferay")
+    		.put(
+    			"xpack.ssl.keystore.path",
+    			System.getProperty(
+    				"xpack.ssl.keystore.path", "elastic-certificates.p12"))
+    		.put(
+    			"xpack.ssl.truststore.password",
+    			"liferay")
+    		.put(
+    			"xpack.ssl.truststore.path",
+    			System.getProperty(
+    				"xpack.ssl.truststore.path", "elastic-certificates.p12"))
             .build();
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
