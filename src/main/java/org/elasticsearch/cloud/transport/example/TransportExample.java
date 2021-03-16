@@ -86,14 +86,14 @@ public class TransportExample {
     		.put(
     			"xpack.ssl.keystore.path",
     			System.getProperty(
-    				"xpack.ssl.keystore.path", "elastic-certificates.p12"))
+    				"keystore", "elastic-certificates.p12"))
     		.put(
     			"xpack.ssl.truststore.password",
     			"liferay")
     		.put(
     			"xpack.ssl.truststore.path",
     			System.getProperty(
-    				"xpack.ssl.truststore.path", "elastic-certificates.p12"))
+    				"truststore", "elastic-certificates.p12"))
             .build();
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
