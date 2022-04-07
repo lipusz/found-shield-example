@@ -94,6 +94,9 @@ public class TransportExample {
     			"xpack.ssl.truststore.path",
     			System.getProperty(
     				"truststore", "elastic-certificates.p12"))
+    		.put(
+    			"xpack.security.transport.ssl.cipher_suites",
+    			System.getProperty("jdk.tls.client.cipherSuites"))
             .build();
 
         // Instantiate a TransportClient and add the cluster to the list of addresses to connect to.
