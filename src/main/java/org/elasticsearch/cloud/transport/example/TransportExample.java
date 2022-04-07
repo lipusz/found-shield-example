@@ -81,17 +81,17 @@ public class TransportExample {
             	insecure ? "none" : "full")
 //			Certs whe testing with localhost ES cluster
     		.put(
-    			"xpack.ssl.keystore.password",
+    			"xpack.security.transport.ssl.keystore.password",
     			"liferay")
     		.put(
-    			"xpack.ssl.keystore.path",
+    			"xpack.security.transport.ssl.keystore.path",
     			System.getProperty(
     				"keystore", "elastic-certificates.p12"))
     		.put(
-    			"xpack.ssl.truststore.password",
+    			"xpack.security.transport.ssl.truststore.password",
     			"liferay")
     		.put(
-    			"xpack.ssl.truststore.path",
+    			"xpack.security.transport.ssl.truststore.path",
     			System.getProperty(
     				"truststore", "elastic-certificates.p12"))
             .build();
